@@ -15,11 +15,15 @@ class TestOCR(unittest.TestCase):
         for i in range(3, len(self.ocr.lines)):
             if (i + 1) % 4 == 0:
                 multiple_of_four_line.append(self.ocr.lines[i])
-                print(multiple_of_four_line)
         for j in range(len(multiple_of_four_line)):
             self.assertNotEqual(len(multiple_of_four_line[j]), 0) #make sure line wasn't already empty
             multiple_of_four_line[j] = multiple_of_four_line[j].replace(' ', '') 
             self.assertEqual(len(multiple_of_four_line[j]), 0)
+
+    def test_EachLineHas27Characters(self):
+        for i in range(len(self.ocr.lines)):
+            print(str(self.ocr.lines[i]) + str(len(self.ocr.lines[i])))
+            self.assertEqual(len(self.ocr.lines[i]), 27)
 
 if __name__ == "__main__":
     unittest.main()
